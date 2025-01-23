@@ -36,14 +36,14 @@ export async function onRequestGet(context) {
         });
     } else {
         try {
-            const info = await env.DB.prepare(`INSERT INTO logs (url, slug, ip,referer,  ua, create_time) 
-            VALUES ('${Url.url}', '${slug}', '${clientIP}','${Referer}', '${userAgent}', '${formattedDate}')`).run()
+            // const info = await env.DB.prepare(`INSERT INTO logs (url, slug, ip,referer,  ua, create_time) 
+            // VALUES ('${Url.url}', '${slug}', '${clientIP}','${Referer}', '${userAgent}', '${formattedDate}')`).run()
             // console.log(info);
-            return Response.redirect(Url.url, 302);
+            return Response.redirect(Url.url, 301);
             
         } catch (error) {
             console.log(error);
-            return Response.redirect(Url.url, 302);
+            return Response.redirect(Url.url, 301);
         }
     }
 
