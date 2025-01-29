@@ -104,7 +104,7 @@ export async function onRequest(context) {
 
         // url 存在且没有自定义 slug
         if (existSlug && !slug) {
-            return Response.json({ slug: existSlug.existSlug, link: `${origin}/${existSlug.existSlug}` },{
+            return Response.json({ slug: existSlug.existSlug, link: `${origin}/${existSlug.existSlug}`,message: 'Slug update.' },{
                 headers: corsHeaders,
                 status: 200
             
@@ -126,7 +126,7 @@ export async function onRequest(context) {
         const info = await env.DB.prepare(`INSERT INTO links (url, slug, ip, status, ua, create_time) 
         VALUES ('${url}', '${slug2}', '${clientIP}',1, '${userAgent}', '${formattedDate}')`).run()
 
-        return Response.json({ slug: slug2, link: `${origin}/${slug2}` },{
+        return Response.json({ slug: slug2, link: `${origin}/${slug2}`,message: 'Slug update.' },{
             headers: corsHeaders,
             status: 200
         })
